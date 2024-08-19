@@ -1,0 +1,21 @@
+Cloud Proxy:
+
+wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+chmod +x cloud_sql_proxy
+
+./cloud_sql_proxy -instances=<INSTANCE_CONNECTION_NAME>=tcp:3306
+
+! Update your paymentService.js database connection configuration to point to localhost:3306
+eg:
+const connection = mysql.createConnection({
+    host: '127.0.0.1',
+    user: 'your-username',
+    password: 'your-password',
+    database: 'your-database',
+    port: 3306
+});
+
+! Deleting and creating subscription
+
+gcloud pubsub subscriptions create payment-subscription --topic=orders-topic
+gcloud pubsub subscriptions delete payment-subscription
