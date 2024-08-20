@@ -17,5 +17,17 @@ const connection = mysql.createConnection({
 
 ! Deleting and creating subscription
 
+gcloud pubsub topics create orders-topic
 gcloud pubsub subscriptions create payment-subscription --topic=orders-topic
 gcloud pubsub subscriptions delete payment-subscription
+
+Database :
+
+CREATE DATABASE ecommerce;
+USE ecommerce;
+
+CREATE TABLE payments (
+  order_id VARCHAR(255) PRIMARY KEY,
+  status VARCHAR(255)
+);
+
